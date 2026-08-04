@@ -4,7 +4,8 @@
   "description": "Estimare valoare imobil pe baza coeficientilor legali (Decret-Lege 61/1990)",
   "main": "src/evaluator.js",
   "scripts": {
-    "test": "node --test src/test/*.test.js"
+    "test": "node --test src/test/*.test.js",
+    "build:docs": "cp src/evaluator.js docs/evaluator.js"
   },
   "keywords": [
     "imobiliar",

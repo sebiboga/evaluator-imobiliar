@@ -7,3 +7,4 @@
 * **Creation**: `src/evaluator.js` — modul UMD care implementează coeficienții din bundle (uzură, demisol/mansardă, variație pe înălțime, garaj, stare). Tabelele 2 și 3 au fost transpuse în cod pe baza `okf/coeficienti/variatie-inaltime.md`.
 * **Creation**: `src/test/evaluator.test.js` — 14 teste (node:test) care verifică coeficienții și valoarea finală; toate trec.
 * **Creation**: `docs/index.html` — varianta web de evaluare a unui apartament/imobil; folosește aceeași logică ca `src/evaluator.js`.
+* **Deploy**: GitHub Pages activat din folderul `docs/` (https://sebiboga.github.io/evaluator-imobiliar/). Pentru că Pages servește doar `docs/`, se menține `docs/evaluator.js` — copie a `src/evaluator.js`, sincronizată cu `npm run build:docs`.

@@ -37,7 +37,9 @@ console.log(rezultat.factori);        // descompunerea pe factori
 
 ### Web
 
-Deschide `docs/index.html` în browser (sau servește rădăcina repo-ului — pagina încarcă `src/evaluator.js` prin cale relativă, deci funcționează și cu GitHub Pages servit de pe root).
+Deschide `docs/index.html` în browser, sau varianta publicată pe **GitHub Pages** (servit din `docs/`): https://sebiboga.github.io/evaluator-imobiliar/
+
+Varianta web folosește `docs/evaluator.js` — o copie a `src/evaluator.js` menținută cu `npm run build:docs` (necesară pentru că Pages servește doar folderul `docs/`).
 
 ## Teste
 
