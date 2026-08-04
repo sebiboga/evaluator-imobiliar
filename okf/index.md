@@ -24,3 +24,7 @@ Knowledge set pentru dezvoltarea unui **evaluator imobiliar** (proiectul „eVal
 ## Cercetare & surse
 
 * [Surse și cercetare](cercetare/surse.md) — link-uri și informația extrasă (expertasig.ro, ANEVAR, etc.).
+
+## Implementare
+
+Coeficienții de mai sus sunt implementați în codul proiectului: `../src/evaluator.js` (modul UMD reutilizabil) și expuși ca varianta web în `../docs/`. Tabelele 2 și 3 din [variația pe înălțime](coeficienti/variatie-inaltime.md) sunt sursa directă a datelor din cod.

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluator Imobiliar</title>
+<style>
+:root {
+  --bg: #f4f6fb;
+  --card: #ffffff;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+header {
+  background: linear-gradient(135deg, var(--primary), #7c3aed);
+  color: #fff;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+header h1 { font-size: 1.8rem; font-weight: 700; }
+header p { margin-top: .4rem; opacity: .9; font-size: .95rem; }
+main {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+@media (max-width: 860px) { main { grid-template-columns: 1fr; } }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+.card h2 {
+  font-size: 1.05rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: .6rem;
+  border-bottom: 2px solid var(--border);
+}
+label { display: block; font-size: .85rem; font-weight: 600; margin: .8rem 0 .35rem; color: var(--muted); }
+select, input[type=number] {
+  width: 100%;
+  padding: .55rem .7rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: .95rem;
+  background: #fff;
+  color: var(--text);
+}
+select:focus, input:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-top: .9rem;
+  font-size: .92rem;
+  font-weight: 500;
+}
+.checkbox input { width: auto; }
+button {
+  width: 100%;
+  margin-top: 1.3rem;
+  padding: .8rem;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s;
+}
+button:hover { background: var(--primary-dark); }
+.result-box {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 10px;
+  padding: 1.2rem;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+.result-box .label { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.result-box .value { font-size: 2rem; font-weight: 800; color: var(--primary-dark); margin-top: .2rem; }
+.detail { font-size: .9rem; padding: .35rem .5rem; border-radius: 6px; margin-top: .35rem; display: flex; justify-content: space-between; }
+.detail .name { color: var(--muted); }
+.detail .val { font-weight: 600; }
+table { width: 100%; border-collapse: collapse; font-size: .85rem; margin-top: .5rem; }
+th, td { border: 1px solid var(--border); padding: .3rem .4rem; text-align: right; }
+th { background: #f8fafc; }
+td:first-child, th:first-child { text-align: left; font-weight: 600; }
+.footnote { margin-top: 1rem; font-size: .78rem; color: var(--muted); line-height: 1.5; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Evaluator Imobiliar</h1>
+  <p>Estimare a valorii de piață pe baza coeficienților legali (Decret-Lege 61/1990)</p>
+</header>
+
+<main>
+  <div>
+    <section class="card">
+      <h2>Date despre imobil</h2>
+      <div class="row">
+        <div>
+          <label for="tip">Tip imobil</label>
+          <select id="tip">
+            <option value="apartament" selected>Apartament</option>
+            <option value="casa">Casa</option>
+            <option value="studio">Studio</option>
+            <option value="cort">Cort</option>
+            <option value="palat">Palat</option>
+          </select>
+        </div>
+        <div>
+          <label for="camere">Numar camere</label>
+          <select id="camere">
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="0">Nenumarate</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="suprafata">Suprafata utila (m²)</label>
+          <input type="number" id="suprafata" value="60" min="1" step="1">
+        </div>
+        <div>
+          <label for="stare">Stare / Conditii</label>
+          <select id="stare">
+            <option value="vai-si-amar">Vai si amar</option>
+            <option value="student">Student</option>
+            <option value="decent" selected>Decent</option>
+            <option value="renovat">Recent renovat</option>
+            <option value="sublim">Sublim</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="an_constructie">Anul constructiei</label>
+          <input type="number" id="an_constructie" value="1980" min="1950" max="2026">
+        </div>
+        <div>
+          <label for="garaj">Garaj</label>
+          <select id="garaj">
+            <option value="0">Nu</option>
+            <option value="1">Da (+5%)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="nivel">Nivelul locuintei</label>
+          <select id="nivel">
+            <option value="P">Parter (P)</option>
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+          </select>
+        </div>
+        <div>
+          <label for="niveluri">Numarul de niveluri al blocului</label>
+          <select id="niveluri">
+            <option value="1">P (1 nivel)</option>
+            <option value="2">P+1</option>
+            <option value="3">P+2</option>
+            <option value="4">P+3</option>
+            <option value="5">P+4</option>
+            <option value="6">P+5</option>
+            <option value="7">P+6</option>
+            <option value="8">P+7</option>
+            <option value="9">P+8</option>
+            <option value="10" selected>P+9</option>
+            <option value="11">P+10</option>
+            <option value="12">P+11</option>
+            <option value="13">P+12</option>
+            <option value="14">P+13</option>
+            <option value="15">P+14</option>
+            <option value="16">P+15</option>
+            <option value="17">P+16</option>
+            <option value="18">P+17</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="pret_m2">Pret de baza per m² (EUR)</label>
+      <input type="number" id="pret_m2" value="1600" min="1" step="10">
+
+      <div class="checkbox">
+        <input type="checkbox" id="demisol">
+        <label for="demisol" style="margin:0">Imobilul este la demisol</label>
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" id="mansarda">
+        <label for="mansarda" style="margin:0">Imobilul este la mansarda</label>
+      </div>
+
+      <button onclick="evalueaza()">Arata valoarea</button>
+    </section>
+  </div>
+
+  <div>
+    <section class="card">
+      <h2>Rezultat</h2>
+      <div class="result-box">
+        <div class="label">Valoare estimata</div>
+        <div class="value" id="valoare">—</div>
+      </div>
+      <div id="detaliu"></div>
+      <p class="footnote">Calculul folosește codul din <code>src/evaluator.js</code> — aceeași logică ca în API/Node. Tabelele de coeficienți sunt documentate în bundle-ul OKF (<code>okf/coeficienti/</code>).</p>
+    </section>
+
+    <section class="card">
+      <h2>Coeficient de uzura (vechime)</h2>
+      <table id="tabel-uzura"></table>
+      <p class="footnote">Tabelul nr. 2, Anexa 1, art. 11 — Decret-Lege 61/1990.</p>
+    </section>
+  </div>
+</main>
+
+<script src="../src/evaluator.js"></script>
+<script>
+const Ev = window.EvaluatorImobiliar;
+
+function format(n) {
+  return n.toLocaleString('ro-RO', { maximumFractionDigits: 0 });
+}
+
+function tabelUzura() {
+  const tb = document.getElementById('tabel-uzura');
+  const an = new Date().getFullYear();
+  tb.innerHTML = '<tr><th>Vechime</th><th>Ani</th><th>Coeficient</th></tr>';
+  let start = 0;
+  for (const u of Ev.UZURA) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${start}–${u.panaLa} ani</td><td>${an-u.panaLa}…${an-start}</td><td>${u.coef.toFixed(2)}</td>`;
+    tb.appendChild(tr);
+    start = u.panaLa;
+  }
+}
+
+function evalueaza() {
+  const input = {
+    tip: document.getElementById('tip').value,
+    suprafata: parseFloat(document.getElementById('suprafata').value) || 0,
+    pretPerMetruPatrat: parseFloat(document.getElementById('pret_m2').value) || 0,
+    stare: document.getElementById('stare').value,
+    anConstructie: parseInt(document.getElementById('an_constructie').value, 10),
+    garaj: document.getElementById('garaj').value === '1',
+    nivel: document.getElementById('nivel').value,
+    numarNiveluri: parseInt(document.getElementById('niveluri').value, 10),
+    demisol: document.getElementById('demisol').checked,
+    mansarda: document.getElementById('mansarda').checked,
+  };
+
+  const r = Ev.evalueaza(input);
+
+  document.getElementById('valoare').textContent = format(r.valoare) + ' EUR';
+
+  const d = document.getElementById('detaliu');
+  d.innerHTML = `
+    <div class="detail"><span class="name">Pret de baza (m² × tip × stare × suprafata)</span><span class="val">${format(r.factori.pretBaza)} EUR</span></div>
+    <div class="detail"><span class="name">Coeficient uzura (${new Date().getFullYear()-input.anConstructie} ani)</span><span class="val">× ${r.factori.kUzura.toFixed(2)}</span></div>
+    <div class="detail"><span class="name">Demisol/mansarda</span><span class="val">× ${r.factori.kDemisolMansarda.toFixed(2)}</span></div>
+    <div class="detail"><span class="name">Variatie pe inaltime (nivel ${input.nivel}, ${input.numarNiveluri} niveluri)</span><span class="val">${r.factori.corectieProcente}%</span></div>
+    <div class="detail"><span class="name">Garaj</span><span class="val">× ${r.factori.kGaraj.toFixed(2)}</span></div>
+  `;
+}
+
+tabelUzura();
+</script>
+</body>
+</html>
