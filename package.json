@@ -5,7 +5,7 @@
   "main": "src/evaluator.js",
   "scripts": {
     "test": "node --test src/test/*.test.js",
-    "build:docs": "cp src/evaluator.js docs/evaluator.js"
+    "build:docs": "node -e \"const fs = require('fs'); fs.mkdirSync('docs/data', { recursive: true }); fs.copyFileSync('src/evaluator.js', 'docs/evaluator.js'); fs.copyFileSync('src/grila.js', 'docs/grila.js'); fs.copyFileSync('src/data/grila.json', 'docs/data/grila.json');\""
   },
   "keywords": [
     "imobiliar",

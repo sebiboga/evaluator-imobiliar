@@ -1,0 +1,1019 @@
+{
+  "bucuresti": {
+    "nume": "București",
+    "resedinta": {
+      "nume": "București",
+      "pret": 2200
+    },
+    "zone": {
+      "primaverii": 5200,
+      "kiseleff": 4900,
+      "aviatorilor": 4800,
+      "herastrau": 4600,
+      "nordului": 4600,
+      "floreasca": 3800,
+      "dorobanti": 3900,
+      "aviatiei": 3200,
+      "pipera": 2600,
+      "baneasa": 2800,
+      "cotroceni": 3100,
+      "domenii": 2900,
+      "victoriei": 2900,
+      "romana": 2800,
+      "universitate": 2700,
+      "unirii": 2700,
+      "centrul vechi": 2600,
+      "cismigiu": 2600,
+      "timpuri noi": 2400,
+      "tineretului": 2350,
+      "eroilor": 2500,
+      "vitan": 2100,
+      "vitan mall": 2250,
+      "dristor": 2000,
+      "mihai bravu": 2100,
+      "obor": 1950,
+      "tei": 2050,
+      "stefan cel mare": 2300,
+      "lancului": 1950,
+      "iancului": 1950,
+      "mosilor": 2100,
+      "grozavesti": 2200,
+      "basarab": 1900,
+      "13 septembrie": 1950,
+      "panduri": 2050,
+      "titan": 1850,
+      "balta alba": 1800,
+      "nicolae grigorescu": 1850,
+      "1 decembrie": 1700,
+      "pallady": 1750,
+      "berceni": 1600,
+      "aparatorii patriei": 1550,
+      "oltenitei": 1650,
+      "brancoveanu": 1850,
+      "piata sudului": 1750,
+      "drumul taberei": 1750,
+      "favorit": 1800,
+      "militari": 1650,
+      "lujerului": 1800,
+      "gorjului": 1650,
+      "militari residence": 1450,
+      "crangasi": 1750,
+      "giulesti": 1550,
+      "bucurestii noi": 1900,
+      "damaroaia": 2100,
+      "colentina": 1650,
+      "fundeni": 1550,
+      "pantelimon": 1600,
+      "baicului": 1600,
+      "rahova": 1450,
+      "salaj": 1350,
+      "ferentari": 1250,
+      "prelungirea ghencea": 1500
+    },
+    "sectoare": {
+      "sector 1": 3100,
+      "sector 2": 2250,
+      "sector 3": 2150,
+      "sector 4": 1800,
+      "sector 5": 1650,
+      "sector 6": 1850
+    }
+  },
+  "ilfov": {
+    "nume": "Ilfov",
+    "resedinta": {
+      "nume": "Ilfov",
+      "pret": 1600
+    },
+    "orase": {
+      "pipera": 2600,
+      "otopeni": 1900,
+      "voluntari": 1850,
+      "corbeanca": 1650,
+      "snagov": 1450,
+      "mogosoaia": 1500,
+      "balotesti": 1350,
+      "buftea": 1250,
+      "chitila": 1300,
+      "chiajna": 1400,
+      "dudu": 1350,
+      "rosu": 1400,
+      "popesti leordeni": 1450,
+      "bragadiru": 1350,
+      "pantelimon": 1300,
+      "dobroesti": 1450,
+      "magurele": 1250,
+      "jilava": 1100,
+      "berceni": 1250,
+      "afumati": 1100,
+      "vidra": 950,
+      "domnesti": 1150,
+      "clinceni": 1100,
+      "ciolpani": 950,
+      "peris": 900,
+      "branesti": 1050,
+      "cernica": 1150
+    },
+    "implicitOras": 1300,
+    "implicitRural": 950
+  },
+  "alba": {
+    "nume": "Alba",
+    "resedinta": {
+      "nume": "Alba Iulia",
+      "pret": 1550
+    },
+    "orase": {
+      "sebes": 1250,
+      "blaj": 1100,
+      "cugir": 950,
+      "aiud": 950,
+      "teius": 850,
+      "ocna mures": 750,
+      "campeni": 750,
+      "zlatna": 700,
+      "abrud": 700,
+      "baia de aries": 650
+    },
+    "implicitOras": 900,
+    "implicitRural": 600
+  },
+  "arad": {
+    "nume": "Arad",
+    "resedinta": {
+      "nume": "Arad",
+      "pret": 1450
+    },
+    "orase": {
+      "lipova": 850,
+      "ineu": 800,
+      "curtici": 850,
+      "santana": 800,
+      "chisineu cris": 800,
+      "nadlac": 750,
+      "pancota": 750,
+      "sebis": 700,
+      "vladimirescu": 1100
+    },
+    "implicitOras": 800,
+    "implicitRural": 550
+  },
+  "arges": {
+    "nume": "Argeș",
+    "resedinta": {
+      "nume": "Pitești",
+      "pret": 1400
+    },
+    "orase": {
+      "mioveni": 1200,
+      "stefanesti": 1150,
+      "curtea de arges": 1000,
+      "campulung": 900,
+      "topoloveni": 850,
+      "costesti": 700,
+      "bradetu": 650
+    },
+    "implicitOras": 850,
+    "implicitRural": 550
+  },
+  "bacau": {
+    "nume": "Bacău",
+    "resedinta": {
+      "nume": "Bacău",
+      "pret": 1350
+    },
+    "orase": {
+      "onesti": 950,
+      "slanic moldova": 950,
+      "targu ocna": 850,
+      "moinesti": 800,
+      "comanesti": 750,
+      "buhusi": 700,
+      "darmanesti": 650
+    },
+    "implicitOras": 800,
+    "implicitRural": 500
+  },
+  "bihor": {
+    "nume": "Bihor",
+    "resedinta": {
+      "nume": "Oradea",
+      "pret": 1850
+    },
+    "zone": {
+      "centru": 2300,
+      "ultracentral": 2450,
+      "oltea doamna": 2350,
+      "cantemir": 1800,
+      "rogerius": 1750,
+      "nufarul": 1850,
+      "iosia": 1750,
+      "iosia nord": 1800,
+      "velenta": 1600,
+      "dragos voda": 1650
+    },
+    "orase": {
+      "sanmartin": 1700,
+      "baile felix": 2000,
+      "baile 1 mai": 1800,
+      "salonta": 950,
+      "beius": 900,
+      "marghita": 850,
+      "alesd": 850,
+      "sacueni": 750,
+      "valea lui mihai": 750,
+      "stei": 700,
+      "nucet": 600,
+      "vascau": 600
+    },
+    "implicitOras": 850,
+    "implicitRural": 600
+  },
+  "bistrita_nasaud": {
+    "nume": "Bistrița-Năsăud",
+    "aliases": [
+      "bistrita",
+      "nasaud"
+    ],
+    "resedinta": {
+      "nume": "Bistrița",
+      "pret": 1450
+    },
+    "orase": {
+      "beclean": 1000,
+      "nasaud": 950,
+      "sangeorz bai": 800
+    },
+    "implicitOras": 900,
+    "implicitRural": 600
+  },
+  "botosani": {
+    "nume": "Botoșani",
+    "resedinta": {
+      "nume": "Botoșani",
+      "pret": 1250
+    },
+    "orase": {
+      "dorohoi": 850,
+      "darabani": 650,
+      "saveni": 600,
+      "flamanzi": 600,
+      "bucecea": 600
+    },
+    "implicitOras": 700,
+    "implicitRural": 450
+  },
+  "brasov": {
+    "nume": "Brașov",
+    "resedinta": {
+      "nume": "Brașov",
+      "pret": 2300
+    },
+    "zone": {
+      "centru istoric": 3100,
+      "centru": 2800,
+      "schei": 2900,
+      "poiana brasov": 3800,
+      "astra": 2150,
+      "racadau": 2350,
+      "vale cetatii": 2350,
+      "tractorul": 2450,
+      "coresi": 2550,
+      "bartolomeu": 2000,
+      "bartolomeu nord": 2150,
+      "noua": 2050,
+      "triaj": 1850,
+      "florilor": 2150
+    },
+    "orase": {
+      "poiana brasov": 3800,
+      "ghimbav": 1900,
+      "cristian": 1850,
+      "sanpetru": 1800,
+      "predeal": 2000,
+      "sacele": 1600,
+      "rasnov": 1500,
+      "bran": 1450,
+      "codlea": 1250,
+      "zarnesti": 1100,
+      "fagaras": 1050,
+      "rupea": 750,
+      "victoria": 700
+    },
+    "implicitOras": 1200,
+    "implicitRural": 800
+  },
+  "braila": {
+    "nume": "Brăila",
+    "resedinta": {
+      "nume": "Brăila",
+      "pret": 1200
+    },
+    "orase": {
+      "ianca": 650,
+      "insuratei": 600,
+      "faurei": 550,
+      "lacu sarat": 900
+    },
+    "implicitOras": 650,
+    "implicitRural": 450
+  },
+  "buzau": {
+    "nume": "Buzău",
+    "resedinta": {
+      "nume": "Buzău",
+      "pret": 1300
+    },
+    "orase": {
+      "ramnicu sarat": 950,
+      "sarata monteoru": 900,
+      "nehoiu": 700,
+      "patarlagele": 650,
+      "pogoanele": 550
+    },
+    "implicitOras": 750,
+    "implicitRural": 500
+  },
+  "caras_severin": {
+    "nume": "Caraș-Severin",
+    "aliases": [
+      "caras",
+      "severin",
+      "resita"
+    ],
+    "resedinta": {
+      "nume": "Reșița",
+      "pret": 1050
+    },
+    "orase": {
+      "baile herculane": 1100,
+      "caransebes": 900,
+      "oravita": 650,
+      "otelu rosu": 650,
+      "moldova noua": 600,
+      "bocsa": 600,
+      "anina": 500
+    },
+    "implicitOras": 700,
+    "implicitRural": 450
+  },
+  "calarasi": {
+    "nume": "Călărași",
+    "resedinta": {
+      "nume": "Călărași",
+      "pret": 1100
+    },
+    "orase": {
+      "oltenita": 850,
+      "fundulea": 750,
+      "lehliu gara": 700,
+      "budesti": 550
+    },
+    "implicitOras": 700,
+    "implicitRural": 450
+  },
+  "cluj": {
+    "nume": "Cluj",
+    "resedinta": {
+      "nume": "Cluj-Napoca",
+      "pret": 3100
+    },
+    "zone": {
+      "centru": 4000,
+      "ultracentral": 4200,
+      "andrei muresanu": 3600,
+      "plopilor": 3500,
+      "zorilor": 3200,
+      "gheorgheni": 3250,
+      "buna ziua": 3150,
+      "borhanci": 2950,
+      "grigorescu": 3100,
+      "marasti": 3000,
+      "intre lacuri": 2850,
+      "manastur": 2850,
+      "europa": 3100,
+      "someseni": 2500,
+      "iris": 2450,
+      "bulgaria": 2400,
+      "dambul rotund": 2500
+    },
+    "orase": {
+      "floresti": 1850,
+      "baciu": 1900,
+      "apahida": 1750,
+      "gilau": 1400,
+      "feleacu": 1650,
+      "chinteni": 1500,
+      "turda": 1250,
+      "campia turzii": 1050,
+      "dej": 1150,
+      "gherla": 1150,
+      "huedin": 950
+    },
+    "implicitOras": 1150,
+    "implicitRural": 800
+  },
+  "constanta": {
+    "nume": "Constanța",
+    "resedinta": {
+      "nume": "Constanța",
+      "pret": 1950
+    },
+    "zone": {
+      "mamaia": 2900,
+      "mamaia nord": 2300,
+      "faleza nord": 2600,
+      "centru": 2250,
+      "peninsula": 2300,
+      "tomis nord": 1950,
+      "tomis plus": 2050,
+      "tomis 1": 1950,
+      "tomis 2": 2050,
+      "tomis 3": 1900,
+      "dacia": 1850,
+      "inel 1": 1750,
+      "inel 2": 1700,
+      "km 4 5": 1600,
+      "km 5": 1550,
+      "poarta 6": 1500
+    },
+    "orase": {
+      "navodari": 1650,
+      "ovidiu": 1750,
+      "eforie nord": 1500,
+      "eforie sud": 1350,
+      "mangalia": 1300,
+      "vama veche": 1600,
+      "2 mai": 1350,
+      "costinesti": 1400,
+      "neptun": 1450,
+      "olimp": 1500,
+      "jupiter": 1350,
+      "venus": 1350,
+      "saturn": 1300,
+      "techirghiol": 1200,
+      "medgidia": 950,
+      "cernavoda": 850,
+      "murfatlar": 850,
+      "harsova": 650,
+      "negru voda": 600,
+      "baneasa": 550
+    },
+    "implicitOras": 1000,
+    "implicitRural": 650
+  },
+  "covasna": {
+    "nume": "Covasna",
+    "resedinta": {
+      "nume": "Sfântu Gheorghe",
+      "pret": 1350
+    },
+    "orase": {
+      "targu secuiesc": 1000,
+      "covasna": 950,
+      "intorsura buzaului": 800,
+      "baraolt": 700
+    },
+    "implicitOras": 850,
+    "implicitRural": 550
+  },
+  "dambovita": {
+    "nume": "Dâmbovița",
+    "resedinta": {
+      "nume": "Târgoviște",
+      "pret": 1300
+    },
+    "orase": {
+      "pucioasa": 900,
+      "moreni": 850,
+      "gaesti": 800,
+      "titu": 850,
+      "fieni": 750,
+      "racari": 700
+    },
+    "implicitOras": 800,
+    "implicitRural": 500
+  },
+  "dolj": {
+    "nume": "Dolj",
+    "resedinta": {
+      "nume": "Craiova",
+      "pret": 1700
+    },
+    "zone": {
+      "centru": 2200,
+      "ultracentral": 2350,
+      "brazda lui novac": 1750,
+      "lapus": 1650,
+      "craiovita noua": 1550,
+      "rovinari": 1650,
+      "1 mai": 1750,
+      "valea rosie": 1600,
+      "romanesti": 1500
+    },
+    "orase": {
+      "filiasi": 750,
+      "calafat": 700,
+      "bailesti": 650,
+      "segarcea": 600,
+      "dabuleni": 550,
+      "bechet": 500
+    },
+    "implicitOras": 650,
+    "implicitRural": 450
+  },
+  "galati": {
+    "nume": "Galați",
+    "resedinta": {
+      "nume": "Galați",
+      "pret": 1350
+    },
+    "zone": {
+      "centru": 1650,
+      "faleza": 1750,
+      "mazepa 1": 1600,
+      "mazepa 2": 1550,
+      "tigilina 1": 1400,
+      "tigilina 2": 1350,
+      "micro 17": 1250,
+      "micro 18": 1300,
+      "micro 19": 1250,
+      "micro 20": 1250
+    },
+    "orase": {
+      "tecuci": 950,
+      "targu bujor": 600,
+      "beresti": 500
+    },
+    "implicitOras": 700,
+    "implicitRural": 450
+  },
+  "giurgiu": {
+    "nume": "Giurgiu",
+    "resedinta": {
+      "nume": "Giurgiu",
+      "pret": 1050
+    },
+    "orase": {
+      "mihailesti": 850,
+      "bolintin vale": 800
+    },
+    "implicitOras": 750,
+    "implicitRural": 500
+  },
+  "gorj": {
+    "nume": "Gorj",
+    "resedinta": {
+      "nume": "Târgu Jiu",
+      "pret": 1350
+    },
+    "orase": {
+      "motru": 750,
+      "novaci": 750,
+      "bumbesti jiu": 650,
+      "rovinari": 650,
+      "tismana": 650,
+      "targu carbunesti": 600,
+      "ticleni": 550,
+      "turceni": 550,
+      "ranca": 1200
+    },
+    "implicitOras": 650,
+    "implicitRural": 450
+  },
+  "harghita": {
+    "nume": "Harghita",
+    "resedinta": {
+      "nume": "Miercurea Ciuc",
+      "pret": 1400
+    },
+    "orase": {
+      "odorheiu secuiesc": 1350,
+      "baile tusnad": 1050,
+      "gheorgheni": 1000,
+      "borsec": 900,
+      "toplita": 850,
+      "cristuru secuiesc": 850,
+      "vlahita": 750,
+      "balan": 550
+    },
+    "implicitOras": 850,
+    "implicitRural": 550
+  },
+  "hunedoara": {
+    "nume": "Hunedoara",
+    "resedinta": {
+      "nume": "Deva",
+      "pret": 1250
+    },
+    "orase": {
+      "hunedoara": 1000,
+      "hateg": 1000,
+      "orastie": 950,
+      "simeria": 900,
+      "petrosani": 750,
+      "brad": 700,
+      "geoagiu": 700,
+      "vulcan": 600,
+      "calan": 600,
+      "lupeni": 550,
+      "petrila": 550,
+      "uricani": 500,
+      "aninoasa": 450
+    },
+    "implicitOras": 750,
+    "implicitRural": 500
+  },
+  "ialomita": {
+    "nume": "Ialomița",
+    "resedinta": {
+      "nume": "Slobozia",
+      "pret": 1200
+    },
+    "orase": {
+      "urziceni": 950,
+      "fetesti": 800,
+      "amara": 750,
+      "tandarei": 650,
+      "fierbinti targ": 600,
+      "cazanesti": 500
+    },
+    "implicitOras": 700,
+    "implicitRural": 450
+  },
+  "iasi": {
+    "nume": "Iași",
+    "resedinta": {
+      "nume": "Iași",
+      "pret": 1750
+    },
+    "zone": {
+      "copou": 2450,
+      "centru": 2300,
+      "palas": 2500,
+      "targu cucu": 2200,
+      "independentei": 2150,
+      "pacurari": 1800,
+      "tatarasi": 1750,
+      "nicolina": 1650,
+      "cug": 1550,
+      "alexandru cel bun": 1650,
+      "dacia": 1550,
+      "cantemir": 1700,
+      "galata": 1600,
+      "bucium": 1750
+    },
+    "orase": {
+      "valea lupului": 1600,
+      "miroslava": 1550,
+      "ciurea": 1400,
+      "rediu": 1450,
+      "aroneanu": 1400,
+      "tomesti": 1200,
+      "pascani": 1000,
+      "targu frumos": 800,
+      "harlau": 750,
+      "podu iloaiei": 750
+    },
+    "implicitOras": 850,
+    "implicitRural": 550
+  },
+  "maramures": {
+    "nume": "Maramureș",
+    "resedinta": {
+      "nume": "Baia Mare",
+      "pret": 1400
+    },
+    "orase": {
+      "sighetu marmatiei": 1050,
+      "baia sprie": 900,
+      "viseu de sus": 800,
+      "borsa": 800,
+      "targu lapus": 750,
+      "seini": 750,
+      "somcuta mare": 650,
+      "cavnic": 650,
+      "ulmeni": 550,
+      "salistea de sus": 550,
+      "dragomiresti": 550
+    },
+    "implicitOras": 750,
+    "implicitRural": 550
+  },
+  "mehedinti": {
+    "nume": "Mehedinți",
+    "resedinta": {
+      "nume": "Drobeta-Turnu Severin",
+      "pret": 1200
+    },
+    "orase": {
+      "orsova": 850,
+      "baia de arama": 650,
+      "strehaia": 600,
+      "vanju mare": 550
+    },
+    "implicitOras": 650,
+    "implicitRural": 450
+  },
+  "mures": {
+    "nume": "Mureș",
+    "resedinta": {
+      "nume": "Târgu Mureș",
+      "pret": 1650
+    },
+    "orase": {
+      "sovata": 1200,
+      "sighisoara": 1150,
+      "reghin": 1100,
+      "ludus": 800,
+      "ungheni": 750,
+      "tarnaveni": 750,
+      "iernut": 700,
+      "sangeorgiu de padure": 650,
+      "miercurea nirajului": 650,
+      "sarmasu": 550
+    },
+    "implicitOras": 850,
+    "implicitRural": 600
+  },
+  "neamt": {
+    "nume": "Neamț",
+    "resedinta": {
+      "nume": "Piatra Neamț",
+      "pret": 1300
+    },
+    "orase": {
+      "roman": 1050,
+      "targu neamt": 900,
+      "bicaz": 700,
+      "roznov": 650
+    },
+    "implicitOras": 800,
+    "implicitRural": 500
+  },
+  "olt": {
+    "nume": "Olt",
+    "resedinta": {
+      "nume": "Slatina",
+      "pret": 1250
+    },
+    "orase": {
+      "caracal": 850,
+      "bals": 750,
+      "corabia": 600,
+      "scornicesti": 600,
+      "draganesti olt": 550,
+      "piatra olt": 550,
+      "potcoava": 500
+    },
+    "implicitOras": 650,
+    "implicitRural": 450
+  },
+  "prahova": {
+    "nume": "Prahova",
+    "resedinta": {
+      "nume": "Ploiești",
+      "pret": 1350
+    },
+    "zone": {
+      "centru": 1650,
+      "nord": 1400,
+      "vest": 1300,
+      "sud": 1250,
+      "maracineni": 1250,
+      "bariera bucuresti": 1300
+    },
+    "orase": {
+      "sinaia": 1800,
+      "busteni": 1600,
+      "azuga": 1400,
+      "campina": 1200,
+      "breaza": 1100,
+      "valenii de munte": 850,
+      "baicoi": 850,
+      "comarnic": 800,
+      "boldesti scaeni": 800,
+      "plopeni": 750,
+      "slanic": 750,
+      "urlati": 750,
+      "mizil": 650,
+      "paulesti": 1250,
+      "blejoi": 1150
+    },
+    "implicitOras": 850,
+    "implicitRural": 600
+  },
+  "satu_mare": {
+    "nume": "Satu Mare",
+    "resedinta": {
+      "nume": "Satu Mare",
+      "pret": 1300
+    },
+    "orase": {
+      "carei": 950,
+      "negresti oas": 900,
+      "tasnad": 700,
+      "livada": 650,
+      "ardud": 650
+    },
+    "implicitOras": 750,
+    "implicitRural": 500
+  },
+  "salaj": {
+    "nume": "Sălaj",
+    "resedinta": {
+      "nume": "Zalău",
+      "pret": 1300
+    },
+    "orase": {
+      "simleu silvaniei": 900,
+      "jibou": 800,
+      "cehu silvaniei": 650
+    },
+    "implicitOras": 750,
+    "implicitRural": 500
+  },
+  "sibiu": {
+    "nume": "Sibiu",
+    "resedinta": {
+      "nume": "Sibiu",
+      "pret": 1850
+    },
+    "zone": {
+      "centru istoric": 2400,
+      "centru": 2200,
+      "sub arini": 2300,
+      "trei stejari": 2050,
+      "mihai viteazul": 1900,
+      "strand": 1850,
+      "valea aurie": 1800,
+      "hipodrom": 1750,
+      "vasile aaron": 1700,
+      "terezian": 1650,
+      "turnisor": 1700
+    },
+    "orase": {
+      "selimbar": 1750,
+      "cisnadie": 1600,
+      "medias": 1100,
+      "avrig": 1000,
+      "talmaciu": 900,
+      "saliste": 850,
+      "ocna sibiului": 850,
+      "agnita": 750,
+      "dumbraveni": 650,
+      "miercurea sibiului": 650,
+      "copsa mica": 550,
+      "paltinis": 1600
+    },
+    "implicitOras": 950,
+    "implicitRural": 650
+  },
+  "suceava": {
+    "nume": "Suceava",
+    "resedinta": {
+      "nume": "Suceava",
+      "pret": 1500
+    },
+    "orase": {
+      "radauti": 1150,
+      "gura humorului": 1150,
+      "vatra dornei": 1100,
+      "campulung moldovenesc": 1000,
+      "falticeni": 1000,
+      "vicovu de sus": 800,
+      "salcea": 750,
+      "siret": 750,
+      "frasin": 700,
+      "milisauti": 650,
+      "cajvana": 650,
+      "brosteni": 600,
+      "dolhasca": 550,
+      "liteni": 550
+    },
+    "implicitOras": 900,
+    "implicitRural": 600
+  },
+  "teleorman": {
+    "nume": "Teleorman",
+    "resedinta": {
+      "nume": "Alexandria",
+      "pret": 1050
+    },
+    "orase": {
+      "rosiorii de vede": 750,
+      "turnu magurele": 700,
+      "videle": 700,
+      "zimnicea": 550
+    },
+    "implicitOras": 650,
+    "implicitRural": 400
+  },
+  "timis": {
+    "nume": "Timiș",
+    "resedinta": {
+      "nume": "Timișoara",
+      "pret": 1950
+    },
+    "zone": {
+      "centru": 2500,
+      "cetate": 2600,
+      "circumvalatiunii": 2050,
+      "soarelui": 1950,
+      "girocului": 1900,
+      "lipovei": 1950,
+      "arona": 1900,
+      "iosefin": 1850,
+      "elisabetin": 2100,
+      "mehala": 1750,
+      "fabric": 1700,
+      "sagului": 1800,
+      "torontalului": 2100
+    },
+    "orase": {
+      "dumbravita": 2000,
+      "giroc": 1800,
+      "mosnita noua": 1750,
+      "ghiroda": 1700,
+      "sacalaz": 1500,
+      "sanandrei": 1400,
+      "chisineu cris": 800,
+      "lugoj": 1150,
+      "sannicolau mare": 900,
+      "jimbolia": 800,
+      "recas": 850,
+      "buzias": 850,
+      "faget": 750,
+      "deta": 700,
+      "gataia": 650,
+      "ciacova": 650
+    },
+    "implicitOras": 900,
+    "implicitRural": 650
+  },
+  "tulcea": {
+    "nume": "Tulcea",
+    "resedinta": {
+      "nume": "Tulcea",
+      "pret": 1350
+    },
+    "orase": {
+      "sulina": 950,
+      "babadag": 750,
+      "macin": 700,
+      "isaccea": 650
+    },
+    "implicitOras": 700,
+    "implicitRural": 500
+  },
+  "vaslui": {
+    "nume": "Vaslui",
+    "resedinta": {
+      "nume": "Vaslui",
+      "pret": 1200
+    },
+    "orase": {
+      "barlad": 950,
+      "husi": 850,
+      "negresti": 600,
+      "murgeni": 500
+    },
+    "implicitOras": 700,
+    "implicitRural": 450
+  },
+  "valcea": {
+    "nume": "Vâlcea",
+    "resedinta": {
+      "nume": "Râmnicu Vâlcea",
+      "pret": 1400
+    },
+    "orase": {
+      "calimanesti": 1200,
+      "baile olanesti": 1150,
+      "dragasani": 900,
+      "horezu": 900,
+      "baile govora": 850,
+      "ocnele mari": 850,
+      "brezoi": 750,
+      "balcesti": 550,
+      "berbesti": 550
+    },
+    "implicitOras": 850,
+    "implicitRural": 550
+  },
+  "vrancea": {
+    "nume": "Vrancea",
+    "resedinta": {
+      "nume": "Focșani",
+      "pret": 1250
+    },
+    "orase": {
+      "adjud": 850,
+      "odobesti": 750,
+      "panciu": 700,
+      "marasesti": 600
+    },
+    "implicitOras": 750,
+    "implicitRural": 450
+  }
+}
