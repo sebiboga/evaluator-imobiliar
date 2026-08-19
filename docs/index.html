@@ -438,7 +438,7 @@
           <label for="pret_m2">
             Pret de baza per m² (EUR)
             <span class="price-input-hint" id="pret_hint"
-              >(auto-completat din grila)</span
+              >(auto-completat dupa locatie)</span
             >
           </label>
           <input
@@ -476,10 +476,8 @@
           </div>
           <div id="detaliu"></div>
           <p class="footnote">
-            Calculul folosește nucleul din
-            <code>evaluator.js</code> (Decret-Lege 61/1990) combinat cu valorile
-            de referință din <code>grila.js</code> (studiile de piață ale
-            Camerelor Notarilor Publici).
+            Calculul aplică coeficienții legali din <code>evaluator.js</code> (Decret-Lege 61/1990)
+            asupra valorii medii de piață de referință pentru zona selectată.
           </p>
         </section>
 
@@ -641,25 +639,20 @@
           }
         } catch (err) {
           console.warn("Eroare reverse geocoding:", err);
-          // Fallback fără blocare
           locNumeEl.textContent = `Coordonate: ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
-          locGrilaEl.textContent = `Grila: ~${document.getElementById("pret_m2").value} EUR/m²`;
+          locGrilaEl.textContent = `Piață: ~${document.getElementById("pret_m2").value} EUR/m²`;
         }
       }
 
-      // Aplică prețul din grila notarială pe baza adresei
       function aplicaGrila(adresaObj, displayStr) {
         const grilaRes = Grila.gasestePretGrila(adresaObj || displayStr);
 
         document.getElementById("loc-nume").textContent =
           grilaRes.zonaIdentificata;
         document.getElementById("loc-grila").textContent =
-          `Grila: ~${format(grilaRes.pretRecomandat)} EUR/m²`;
+          `Piață: ~${format(grilaRes.pretRecomandat)} EUR/m²`;
 
-        // Actualizează inputul de preț de bază
         document.getElementById("pret_m2").value = grilaRes.pretRecomandat;
-
-        // Recalculează evaluarea imobilului
         evalueaza();
       }
 

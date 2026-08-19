@@ -316,5 +316,6 @@
     normalizeaza,
     identificaJudet,
     gasestePretGrila,
+    gasestePretReferinta: gasestePretGrila,
   };
 });
