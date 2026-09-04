@@ -186,7 +186,7 @@ test('genereazaDescriere: apartament standard cu etaj si bloc', () => {
   assert.ok(descriere.includes('regim de înălțime P+9'));
   assert.ok(descriere.includes('1980'));
   assert.ok(descriere.includes('vechime 46 ani'));
-  assert.ok(descriere.includes('garaj inclus'));
+  assert.ok(descriere.includes('Include garaj'));
   // Asigurare că NU include prețul pe metru pătrat
   assert.ok(!descriere.includes('/m²'));
   assert.ok(!descriere.includes('EUR'));
@@ -210,6 +210,7 @@ test('genereazaDescriere: casa cu teren', () => {
   assert.ok(descriere.includes('recent renovat'));
   assert.ok(!descriere.includes('etajul'));
   assert.ok(!descriere.includes('regim de înălțime'));
+  assert.ok(!descriere.includes('garaj'));
   assert.ok(!descriere.includes('/m²'));
 });
 

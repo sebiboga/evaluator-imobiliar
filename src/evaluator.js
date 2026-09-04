@@ -280,6 +280,12 @@
       text += ` Proprietatea dispune de un teren aferent cu suprafața de ${input.suprafataTeren} m².`;
     }
 
+    // Garaj (menționat anterior, afișat doar dacă include garaj)
+    const areGaraj = Boolean(input.garaj && input.garaj !== '0' && input.garaj !== 'false');
+    if (areGaraj) {
+      text += ' Include garaj.';
+    }
+
     // An construcție & vechime
     const anCurent = input.anCurent || opts.anCurent || new Date().getFullYear();
     if (input.anConstructie) {
@@ -291,11 +297,6 @@
     // Stare / Condiții
     const stareText = stariEtichete[input.stare] || 'stare decentă';
     text += ` Se prezintă într-o ${stareText}.`;
-
-    // Garaj
-    if (input.garaj) {
-      text += ' Beneficiază de garaj inclus.';
-    }
 
     return text.trim();
   }
