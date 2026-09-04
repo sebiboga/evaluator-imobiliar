@@ -253,7 +253,7 @@
 
     let text = segmenteIntro.join(', ') + '.';
 
-    // Nivel / Etaj (doar pentru apartament și studio)
+    // Nivel / Etaj (pentru blocuri) și regim de înălțime (pentru toate imobilele)
     if (esteBloc) {
       const regim = input.numarNiveluri
         ? (input.numarNiveluri === 1 ? 'parter' : `P+${input.numarNiveluri - 1}`)
@@ -270,6 +270,9 @@
           : `etajul ${input.nivel}`;
         text += ` Proprietatea este poziționată la ${nivelAfisat}${regimText}.`;
       }
+    } else if (input.numarNiveluri) {
+      const regim = input.numarNiveluri === 1 ? 'parter (P)' : `P+${input.numarNiveluri - 1}`;
+      text += ` Imobilul are un regim de înălțime ${regim}.`;
     }
 
     // Teren (pentru casă, palat, cort)

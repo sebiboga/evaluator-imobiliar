@@ -230,5 +230,24 @@ test('genereazaDescriere: apartament la mansarda', () => {
   assert.ok(descriere.includes('finisaje de lux'));
 });
 
+test('genereazaDescriere: casa cu numar niveluri (P+1)', () => {
+  const descriere = Ev.genereazaDescriere({
+    tip: 'casa',
+    camere: 5,
+    suprafata: 160,
+    numarNiveluri: 2,
+    stare: 'decent',
+    anConstructie: 2018,
+    anCurent: 2026,
+    suprafataTeren: 300,
+  });
+
+  assert.ok(descriere.includes('Imobil de tip Casă'));
+  assert.ok(descriere.includes('regim de înălțime P+1'));
+  assert.ok(descriere.includes('300 m²'));
+  assert.ok(!descriere.includes('etajul'));
+});
+
+
 
 

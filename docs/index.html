@@ -517,7 +517,7 @@
               </select>
             </div>
             <div id="col-bloc-niveluri">
-              <label for="niveluri">Numarul de niveluri al blocului</label>
+              <label for="niveluri">Numarul de niveluri al imobilului</label>
               <select id="niveluri" onchange="evalueaza()">
                 <option value="1">P (1 nivel)</option>
                 <option value="2">P+1</option>
@@ -673,27 +673,29 @@
         }
 
         const colNivel = document.getElementById("col-bloc-nivel");
-        const colNiveluri = document.getElementById("col-bloc-niveluri");
         const nivelEl = document.getElementById("nivel");
-        const niveluriEl = document.getElementById("niveluri");
-
-        const tooltipBloc =
+        const tooltipNivel =
           "Disponibil doar pentru apartament și studio";
 
         if (esteBloc) {
           nivelEl.disabled = false;
-          niveluriEl.disabled = false;
           if (colNivel) colNivel.removeAttribute("title");
-          if (colNiveluri) colNiveluri.removeAttribute("title");
           nivelEl.removeAttribute("title");
-          niveluriEl.removeAttribute("title");
         } else {
           nivelEl.disabled = true;
-          niveluriEl.disabled = true;
-          if (colNivel) colNivel.setAttribute("title", tooltipBloc);
-          if (colNiveluri) colNiveluri.setAttribute("title", tooltipBloc);
-          nivelEl.setAttribute("title", tooltipBloc);
-          niveluriEl.setAttribute("title", tooltipBloc);
+          if (colNivel) colNivel.setAttribute("title", tooltipNivel);
+          nivelEl.setAttribute("title", tooltipNivel);
+        }
+
+        // Numarul de niveluri al imobilului este disponibil pentru toate tipurile de imobil
+        const colNiveluri = document.getElementById("col-bloc-niveluri");
+        const niveluriEl = document.getElementById("niveluri");
+        if (niveluriEl) {
+          niveluriEl.disabled = false;
+          niveluriEl.removeAttribute("title");
+        }
+        if (colNiveluri) {
+          colNiveluri.removeAttribute("title");
         }
       }
 
@@ -803,6 +805,7 @@
     <div class="detail"><span class="name">Tip imobil</span><span class="val">${tipText} (×${(Ev.PRET_BASE_TIP[input.tip] || 1).toFixed(2)})</span></div>
     <div class="detail"><span class="name">Numar camere</span><span class="val">${camereAfisat}</span></div>
     <div class="detail"><span class="name">Suprafata utila</span><span class="val">${input.suprafata} m²</span></div>
+    <div class="detail"><span class="name">Numar niveluri</span><span class="val">${input.numarNiveluri === 1 ? "P (1 nivel)" : `P+${input.numarNiveluri - 1} (${input.numarNiveluri} niveluri)`}</span></div>
     ${detaliiTeren}
     <div class="detail"><span class="name">Stare / Conditii</span><span class="val">${stareText} (×${(Ev.STARE[input.stare] || 1).toFixed(2)})</span></div>
     <div class="detail"><span class="name">Pret unitar zona</span><span class="val">${format(input.pretPerMetruPatrat)} EUR/m²</span></div>
@@ -811,7 +814,7 @@
     <div class="detail"><span class="name">Pret de baza (${input.suprafata}m² × tip × stare × pret/m²)</span><span class="val">${format(r.factori.pretBaza)} EUR</span></div>
     <div class="detail"><span class="name">Coeficient uzura (${new Date().getFullYear() - input.anConstructie} ani)</span><span class="val">× ${r.factori.kUzura.toFixed(2)}</span></div>
     <div class="detail"><span class="name">Demisol / mansarda</span><span class="val">× ${r.factori.kDemisolMansarda.toFixed(2)}</span></div>
-    <div class="detail"><span class="name">Variatie pe inaltime (${esteBloc ? `nivel ${input.nivel}, ${input.numarNiveluri} niveluri` : "bloc"})</span><span class="val">${inaltimeVal}</span></div>
+    <div class="detail"><span class="name">Variatie pe inaltime (${esteBloc ? `nivel ${input.nivel}, ${input.numarNiveluri} niveluri` : `${input.numarNiveluri} niveluri`})</span><span class="val">${inaltimeVal}</span></div>
     <div class="detail"><span class="name">Garaj</span><span class="val">× ${r.factori.kGaraj.toFixed(2)}</span></div>
     ${descompunereTeren}
   `;
