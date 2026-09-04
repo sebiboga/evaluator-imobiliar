@@ -104,3 +104,131 @@ test('evalueaza: stare "sublim" aplica x1.4', () => {
   // 96000 * 1.4 * 1.01 = 135744
   assert.ok(Math.abs(r.valoare - 135744) < 1e-6);
 });
+
+test('evalueaza: casa adauga valoarea terenului', () => {
+  const r = Ev.evalueaza({
+    tip: 'casa',
+    suprafata: 100,
+    pretPerMetruPatrat: 1000,
+    stare: 'decent',
+    anConstructie: 2022,
+    anCurent: 2026,
+    nivel: 'P',
+    numarNiveluri: 1,
+    suprafataTeren: 500,
+    pretTerenPerMetruPatrat: 100,
+  });
+  // Constructie: 100 m² * 1000 * 1.1 (tip casa) * 1.0 (decent) = 110.000 EUR
+  // Teren: 500 m² * 100 EUR = 50.000 EUR
+  // Total: 160.000 EUR
+  assert.strictEqual(r.factori.valoareConstructie, 110000);
+  assert.strictEqual(r.factori.valoareTeren, 50000);
+  assert.strictEqual(r.valoare, 160000);
+});
+
+test('evalueaza: apartament ignora terenul', () => {
+  const r = Ev.evalueaza({
+    tip: 'apartament',
+    suprafata: 50,
+    pretPerMetruPatrat: 1000,
+    stare: 'decent',
+    anConstructie: 2022,
+    anCurent: 2026,
+    nivel: 1,
+    numarNiveluri: 4,
+    suprafataTeren: 500,
+    pretTerenPerMetruPatrat: 100,
+  });
+  // Constructie: 50 * 1000 * 1.0 = 50.000 EUR; Teren: 0 EUR
+  assert.strictEqual(r.factori.valoareTeren, 0);
+  assert.strictEqual(r.valoare, 50000 * 1.04);
+});
+
+test('evalueaza: cort include terenul si nu aplica corectie de bloc', () => {
+  const r = Ev.evalueaza({
+    tip: 'cort',
+    suprafata: 20,
+    pretPerMetruPatrat: 1000,
+    stare: 'decent',
+    anConstructie: 2022,
+    anCurent: 2026,
+    nivel: 5,
+    numarNiveluri: 10,
+    suprafataTeren: 200,
+    pretTerenPerMetruPatrat: 50,
+  });
+  // Constructie: 20 m² * 1000 * 0.3 (cort) * 1.0 (decent) = 6000 EUR
+  // Teren: 200 m² * 50 EUR = 10000 EUR
+  // Total: 16000 EUR (corectie inaltime nu se aplica la cort)
+  assert.strictEqual(r.factori.valoareConstructie, 6000);
+  assert.strictEqual(r.factori.valoareTeren, 10000);
+  assert.strictEqual(r.valoare, 16000);
+});
+
+test('genereazaDescriere: apartament standard cu etaj si bloc', () => {
+  const descriere = Ev.genereazaDescriere({
+    tip: 'apartament',
+    camere: 2,
+    suprafata: 60,
+    stare: 'decent',
+    anConstructie: 1980,
+    anCurent: 2026,
+    nivel: 1,
+    numarNiveluri: 10,
+    garaj: true,
+  }, { zona: 'București (Piața Romană)' });
+
+  assert.ok(descriere.includes('Imobil de tip Apartament'));
+  assert.ok(descriere.includes('cu o suprafață utilă de 60 m²'));
+  assert.ok(descriere.includes('compus din 2 camere'));
+  assert.ok(descriere.includes('în zona București (Piața Romană)'));
+  assert.ok(descriere.includes('etajul 1'));
+  assert.ok(descriere.includes('regim de înălțime P+9'));
+  assert.ok(descriere.includes('1980'));
+  assert.ok(descriere.includes('vechime 46 ani'));
+  assert.ok(descriere.includes('garaj inclus'));
+  // Asigurare că NU include prețul pe metru pătrat
+  assert.ok(!descriere.includes('/m²'));
+  assert.ok(!descriere.includes('EUR'));
+});
+
+test('genereazaDescriere: casa cu teren', () => {
+  const descriere = Ev.genereazaDescriere({
+    tip: 'casa',
+    camere: 4,
+    suprafata: 150,
+    stare: 'renovat',
+    anConstructie: 2015,
+    anCurent: 2026,
+    suprafataTeren: 500,
+    garaj: false,
+  }, { zona: 'Cluj-Napoca (Mărăști)' });
+
+  assert.ok(descriere.includes('Imobil de tip Casă'));
+  assert.ok(descriere.includes('compus din 4 camere'));
+  assert.ok(descriere.includes('teren aferent cu suprafața de 500 m²'));
+  assert.ok(descriere.includes('recent renovat'));
+  assert.ok(!descriere.includes('etajul'));
+  assert.ok(!descriere.includes('regim de înălțime'));
+  assert.ok(!descriere.includes('/m²'));
+});
+
+test('genereazaDescriere: apartament la mansarda', () => {
+  const descriere = Ev.genereazaDescriere({
+    tip: 'apartament',
+    camere: 3,
+    suprafata: 80,
+    stare: 'sublim',
+    anConstructie: 2020,
+    anCurent: 2026,
+    mansarda: true,
+    numarNiveluri: 5,
+  }, { zona: 'Sinaia (Prahova)' });
+
+  assert.ok(descriere.includes('la mansardă'));
+  assert.ok(descriere.includes('P+4'));
+  assert.ok(descriere.includes('finisaje de lux'));
+});
+
+
+
