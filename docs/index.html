@@ -101,6 +101,19 @@
         outline: 2px solid var(--primary);
         outline-offset: 1px;
       }
+      select:disabled,
+      input:disabled {
+        background-color: #f1f5f9;
+        color: #94a3b8;
+        cursor: not-allowed;
+        border-color: #e2e8f0;
+      }
+      .disabled-hint {
+        font-size: 0.76rem;
+        color: var(--muted);
+        font-weight: normal;
+        margin-left: 0.25rem;
+      }
       .row {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -132,6 +145,61 @@
       }
       button:hover {
         background: var(--primary-dark);
+      }
+      .announcement-box {
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 0.9rem 1rem;
+        margin-bottom: 1rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .announcement-box:hover {
+        border-color: #94a3b8;
+      }
+      .announcement-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 0.4rem;
+      }
+      .announcement-title {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--muted);
+      }
+      .btn-copy {
+        background: #ffffff;
+        border: 1px solid var(--border);
+        color: var(--primary);
+        border-radius: 4px;
+        padding: 0.2rem 0.6rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s ease-in-out;
+        width: auto;
+        margin-top: 0;
+      }
+      .btn-copy:hover {
+        background: var(--primary);
+        color: #ffffff;
+        border-color: var(--primary);
+      }
+      .btn-copy.copied {
+        background: #10b981;
+        color: #ffffff;
+        border-color: #10b981;
+      }
+      .announcement-content {
+        font-size: 0.88rem;
+        line-height: 1.55;
+        color: #1e293b;
+        margin: 0;
       }
       .result-box {
         background: #f0f9ff;
@@ -274,6 +342,17 @@
         font-weight: normal;
         margin-left: 0.3rem;
       }
+      .detail-section-title {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--muted);
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.25rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.3rem;
+      }
     </style>
   </head>
   <body>
@@ -281,7 +360,7 @@
       <h1>Evaluator Imobiliar</h1>
       <p>
         Estimare a valorii de piață pe baza coeficienților legali (Decret-Lege
-        61/1990) & Grilei Notariale
+        61/1990) & valorilor de referință pe zonă
       </p>
     </header>
 
@@ -311,7 +390,7 @@
             <div class="loc-text">
               <span id="loc-nume">București (Piața Romană)</span>
             </div>
-            <div class="grila-tag" id="loc-grila">Grila: ~2.800 EUR/m²</div>
+            <div class="grila-tag" id="loc-grila">Piață: ~2.800 EUR/m²</div>
           </div>
         </section>
 
@@ -321,7 +400,7 @@
           <div class="row">
             <div>
               <label for="tip">Tip imobil</label>
-              <select id="tip" onchange="evalueaza()">
+              <select id="tip" onchange="actualizeazaStareFormular(); evalueaza()">
                 <option value="apartament" selected>Apartament</option>
                 <option value="casa">Casa</option>
                 <option value="studio">Studio</option>
@@ -365,6 +444,33 @@
             </div>
           </div>
 
+          <div class="row" id="teren-row">
+            <div id="col-teren-suprafata">
+              <label for="suprafata_teren">Suprafata teren (m²)</label>
+              <input
+                type="number"
+                id="suprafata_teren"
+                value="400"
+                min="0"
+                step="10"
+                disabled
+                oninput="evalueaza()"
+              />
+            </div>
+            <div id="col-teren-pret">
+              <label for="pret_teren_m2">Pret teren per m² (EUR)</label>
+              <input
+                type="number"
+                id="pret_teren_m2"
+                value="150"
+                min="0"
+                step="5"
+                disabled
+                oninput="evalueaza()"
+              />
+            </div>
+          </div>
+
           <div class="row">
             <div>
               <label for="an_constructie">Anul constructiei</label>
@@ -386,8 +492,8 @@
             </div>
           </div>
 
-          <div class="row">
-            <div>
+          <div class="row" id="bloc-row">
+            <div id="col-bloc-nivel">
               <label for="nivel">Nivelul locuintei</label>
               <select id="nivel" onchange="evalueaza()">
                 <option value="P">Parter (P)</option>
@@ -410,8 +516,8 @@
                 <option value="17">17</option>
               </select>
             </div>
-            <div>
-              <label for="niveluri">Numarul de niveluri al blocului</label>
+            <div id="col-bloc-niveluri">
+              <label for="niveluri">Numarul de niveluri al imobilului</label>
               <select id="niveluri" onchange="evalueaza()">
                 <option value="1">P (1 nivel)</option>
                 <option value="2">P+1</option>
@@ -470,6 +576,24 @@
       <div>
         <section class="card">
           <h2>Rezultat</h2>
+
+          <!-- Șablon descriere imobil (anunț standard) -->
+          <div class="announcement-box" id="anunt-imobil-box">
+            <div class="announcement-header">
+              <span class="announcement-title">Descriere imobil (șablon anunț)</span>
+              <button
+                type="button"
+                id="btn-copiaza-anunt"
+                class="btn-copy"
+                onclick="copiazaDescriere()"
+                title="Copiază textul anunțului în clipboard"
+              >
+                Copiază textul
+              </button>
+            </div>
+            <p class="announcement-content" id="anunt-descriere"></p>
+          </div>
+
           <div class="result-box">
             <div class="label">Valoare estimata</div>
             <div class="value" id="valoare">—</div>
@@ -520,11 +644,90 @@
         }
       }
 
+      function actualizeazaStareFormular() {
+        const tip = document.getElementById("tip").value;
+        const esteCuTeren = tip === "casa" || tip === "palat" || tip === "cort";
+        const esteBloc = tip === "apartament" || tip === "studio";
+
+        const colTerenSup = document.getElementById("col-teren-suprafata");
+        const colTerenPret = document.getElementById("col-teren-pret");
+        const suprafataTerenEl = document.getElementById("suprafata_teren");
+        const pretTerenEl = document.getElementById("pret_teren_m2");
+
+        const tooltipTeren = "Disponibil doar pentru casă, palat sau cort";
+
+        if (esteCuTeren) {
+          suprafataTerenEl.disabled = false;
+          pretTerenEl.disabled = false;
+          if (colTerenSup) colTerenSup.removeAttribute("title");
+          if (colTerenPret) colTerenPret.removeAttribute("title");
+          suprafataTerenEl.removeAttribute("title");
+          pretTerenEl.removeAttribute("title");
+        } else {
+          suprafataTerenEl.disabled = true;
+          pretTerenEl.disabled = true;
+          if (colTerenSup) colTerenSup.setAttribute("title", tooltipTeren);
+          if (colTerenPret) colTerenPret.setAttribute("title", tooltipTeren);
+          suprafataTerenEl.setAttribute("title", tooltipTeren);
+          pretTerenEl.setAttribute("title", tooltipTeren);
+        }
+
+        const colNivel = document.getElementById("col-bloc-nivel");
+        const nivelEl = document.getElementById("nivel");
+        const tooltipNivel =
+          "Disponibil doar pentru apartament și studio";
+
+        if (esteBloc) {
+          nivelEl.disabled = false;
+          if (colNivel) colNivel.removeAttribute("title");
+          nivelEl.removeAttribute("title");
+        } else {
+          nivelEl.disabled = true;
+          if (colNivel) colNivel.setAttribute("title", tooltipNivel);
+          nivelEl.setAttribute("title", tooltipNivel);
+        }
+
+        // Numarul de niveluri al imobilului este disponibil pentru toate tipurile de imobil
+        const colNiveluri = document.getElementById("col-bloc-niveluri");
+        const niveluriEl = document.getElementById("niveluri");
+        if (niveluriEl) {
+          niveluriEl.disabled = false;
+          niveluriEl.removeAttribute("title");
+        }
+        if (colNiveluri) {
+          colNiveluri.removeAttribute("title");
+        }
+      }
+
+      function copiazaDescriere() {
+        const text = document.getElementById("anunt-descriere")?.textContent || "";
+        if (!text) return;
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = document.getElementById("btn-copiaza-anunt");
+          if (btn) {
+            const originalText = btn.textContent;
+            btn.textContent = "Copiat!";
+            btn.classList.add("copied");
+            setTimeout(() => {
+              btn.textContent = originalText;
+              btn.classList.remove("copied");
+            }, 2000);
+          }
+        }).catch((err) => {
+          console.warn("Eroare la copiere:", err);
+        });
+      }
+
       function evalueaza() {
         const input = {
           tip: document.getElementById("tip").value,
+          camere: document.getElementById("camere").value,
           suprafata:
             parseFloat(document.getElementById("suprafata").value) || 0,
+          suprafataTeren:
+            parseFloat(document.getElementById("suprafata_teren").value) || 0,
+          pretTerenPerMetruPatrat:
+            parseFloat(document.getElementById("pret_teren_m2").value) || 0,
           pretPerMetruPatrat:
             parseFloat(document.getElementById("pret_m2").value) || 0,
           stare: document.getElementById("stare").value,
@@ -544,16 +747,76 @@
 
         const r = Ev.evalueaza(input);
 
+        // Actualizare șablon descriere imobil (anunț standard)
+        const locNume = document.getElementById("loc-nume")?.textContent || "";
+        const adresaSearch = document.getElementById("adresa_search")?.value || "";
+        const zonaCuratata = (locNume && locNume !== "Identificare zona...")
+          ? locNume
+          : (adresaSearch || "");
+
+        const descriere = Ev.genereazaDescriere(input, { zona: zonaCuratata });
+        const anuntEl = document.getElementById("anunt-descriere");
+        if (anuntEl) {
+          anuntEl.textContent = descriere;
+        }
+
         document.getElementById("valoare").textContent =
           format(r.valoare) + " EUR";
 
+        const tipSel = document.getElementById("tip");
+        const tipText = tipSel.options[tipSel.selectedIndex].text;
+
+        const camereSel = document.getElementById("camere");
+        const camereText = camereSel.options[camereSel.selectedIndex].text;
+        const camereAfisat =
+          camereText === "Nenumarate"
+            ? "Nenumărate"
+            : camereText === "1"
+              ? "1 cameră"
+              : `${camereText} camere`;
+
+        const stareSel = document.getElementById("stare");
+        const stareText = stareSel.options[stareSel.selectedIndex].text;
+
+        const esteCuTeren = r.factori.esteCuTeren;
+        const esteBloc = r.factori.esteBloc;
+
+        const detaliiTeren = esteCuTeren
+          ? `
+    <div class="detail"><span class="name">Suprafata teren</span><span class="val">${input.suprafataTeren} m²</span></div>
+    <div class="detail"><span class="name">Pret unitar teren</span><span class="val">${format(input.pretTerenPerMetruPatrat)} EUR/m²</span></div>
+  `
+          : "";
+
+        const descompunereTeren = esteCuTeren
+          ? `
+    <div class="detail"><span class="name">Valoare constructie</span><span class="val">${format(r.factori.valoareConstructie)} EUR</span></div>
+    <div class="detail"><span class="name">Valoare teren (${input.suprafataTeren}m² × ${format(input.pretTerenPerMetruPatrat)} EUR)</span><span class="val">${format(r.factori.valoareTeren)} EUR</span></div>
+  `
+          : "";
+
+        const inaltimeVal = esteBloc
+          ? `${r.factori.corectieProcente >= 0 ? "+" : ""}${r.factori.corectieProcente}%`
+          : "Nu se aplica (imobil individual)";
+
         const d = document.getElementById("detaliu");
         d.innerHTML = `
-    <div class="detail"><span class="name">Pret de baza (m² × tip × stare × suprafata)</span><span class="val">${format(r.factori.pretBaza)} EUR</span></div>
+    <div class="detail-section-title">Criterii & parametri imobil</div>
+    <div class="detail"><span class="name">Tip imobil</span><span class="val">${tipText} (×${(Ev.PRET_BASE_TIP[input.tip] || 1).toFixed(2)})</span></div>
+    <div class="detail"><span class="name">Numar camere</span><span class="val">${camereAfisat}</span></div>
+    <div class="detail"><span class="name">Suprafata utila</span><span class="val">${input.suprafata} m²</span></div>
+    <div class="detail"><span class="name">Numar niveluri</span><span class="val">${input.numarNiveluri === 1 ? "P (1 nivel)" : `P+${input.numarNiveluri - 1} (${input.numarNiveluri} niveluri)`}</span></div>
+    ${detaliiTeren}
+    <div class="detail"><span class="name">Stare / Conditii</span><span class="val">${stareText} (×${(Ev.STARE[input.stare] || 1).toFixed(2)})</span></div>
+    <div class="detail"><span class="name">Pret unitar zona</span><span class="val">${format(input.pretPerMetruPatrat)} EUR/m²</span></div>
+
+    <div class="detail-section-title" style="margin-top: 0.75rem;">Calcul coeficienti (DL 61/1990)</div>
+    <div class="detail"><span class="name">Pret de baza (${input.suprafata}m² × tip × stare × pret/m²)</span><span class="val">${format(r.factori.pretBaza)} EUR</span></div>
     <div class="detail"><span class="name">Coeficient uzura (${new Date().getFullYear() - input.anConstructie} ani)</span><span class="val">× ${r.factori.kUzura.toFixed(2)}</span></div>
-    <div class="detail"><span class="name">Demisol/mansarda</span><span class="val">× ${r.factori.kDemisolMansarda.toFixed(2)}</span></div>
-    <div class="detail"><span class="name">Variatie pe inaltime (nivel ${input.nivel}, ${input.numarNiveluri} niveluri)</span><span class="val">${r.factori.corectieProcente >= 0 ? "+" : ""}${r.factori.corectieProcente}%</span></div>
+    <div class="detail"><span class="name">Demisol / mansarda</span><span class="val">× ${r.factori.kDemisolMansarda.toFixed(2)}</span></div>
+    <div class="detail"><span class="name">Variatie pe inaltime (${esteBloc ? `nivel ${input.nivel}, ${input.numarNiveluri} niveluri` : `${input.numarNiveluri} niveluri`})</span><span class="val">${inaltimeVal}</span></div>
     <div class="detail"><span class="name">Garaj</span><span class="val">× ${r.factori.kGaraj.toFixed(2)}</span></div>
+    ${descompunereTeren}
   `;
       }
 
@@ -653,6 +916,8 @@
           `Piață: ~${format(grilaRes.pretRecomandat)} EUR/m²`;
 
         document.getElementById("pret_m2").value = grilaRes.pretRecomandat;
+        const pretTeren = Math.max(10, Math.round(grilaRes.pretRecomandat * 0.12));
+        document.getElementById("pret_teren_m2").value = pretTeren;
         evalueaza();
       }
 
@@ -782,6 +1047,7 @@
       });
 
       // Inițializări la pornire
+      actualizeazaStareFormular();
       tabelUzura();
       initMap();
       Grila.incarcaDate("./data/grila.json").then(() => {

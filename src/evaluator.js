@@ -162,13 +162,22 @@
     const stare = STARE[input.stare] ?? STARE.decent;
     const pretBaza = input.pretPerMetruPatrat * (PRET_BASE_TIP[input.tip] ?? 1) * stare * input.suprafata;
 
+    const esteBloc = input.tip === 'apartament' || input.tip === 'studio';
+    const esteCuTeren = input.tip === 'casa' || input.tip === 'palat' || input.tip === 'cort';
+
     const kUzura = coefUzura(input.anConstructie, input.anCurent);
     const kDemisolMansarda = coefDemisolMansarda(input.demisol, input.mansarda);
-    const corectieProcente = corectieInaltime(input.nivel, input.numarNiveluri);
+    const corectieProcente = esteBloc ? corectieInaltime(input.nivel, input.numarNiveluri) : 0;
     const kInaltime = 1 + corectieProcente / 100;
     const kGaraj = input.garaj ? 1.05 : 1.0;
 
-    const valoare = pretBaza * kUzura * kDemisolMansarda * kInaltime * kGaraj;
+    const valoareConstructie = pretBaza * kUzura * kDemisolMansarda * kInaltime * kGaraj;
+
+    const suprafataTeren = esteCuTeren ? (parseFloat(input.suprafataTeren) || 0) : 0;
+    const pretTerenPerMetruPatrat = esteCuTeren ? (parseFloat(input.pretTerenPerMetruPatrat) || 0) : 0;
+    const valoareTeren = suprafataTeren * pretTerenPerMetruPatrat;
+
+    const valoare = valoareConstructie + valoareTeren;
 
     return {
       valoare,
@@ -179,8 +188,117 @@
         corectieProcente,
         kInaltime,
         kGaraj,
+        valoareConstructie,
+        valoareTeren,
+        suprafataTeren,
+        pretTerenPerMetruPatrat,
+        esteBloc,
+        esteCuTeren,
       },
     };
+  }
+
+  /**
+   * Generează un text șablon reprezentând anunțul standard de descriere a imobilului.
+   * Include toate datele despre imobil (fără prețul pe metru pătrat).
+   * @param {object} input - datele imobilului
+   * @param {object} [opts] - opțiuni adiționale (ex: zona, anCurent)
+   * @returns {string}
+   */
+  function genereazaDescriere(input, opts = {}) {
+    const tipuriEtichete = {
+      apartament: 'Apartament',
+      casa: 'Casă',
+      studio: 'Studio / Garsonieră',
+      cort: 'Cort',
+      palat: 'Palat / Reședință',
+    };
+
+    const stariEtichete = {
+      'vai-si-amar': 'necesită renovare completă (stare precară)',
+      student: 'stare locuibilă de bază (standard modest)',
+      decent: 'stare bună și îngrijită (finisaje decente)',
+      renovat: 'recent renovat, cu finisaje moderne',
+      sublim: 'stare excelentă, finisaje de lux (premium)',
+    };
+
+    const tip = tipuriEtichete[input.tip] || 'Imobil';
+    const esteBloc = input.tip === 'apartament' || input.tip === 'studio';
+    const esteCuTeren = input.tip === 'casa' || input.tip === 'palat' || input.tip === 'cort';
+
+    // Camere
+    let camereText = '';
+    const nrCamere = parseInt(input.camere, 10);
+    if (nrCamere === 1) {
+      camereText = 'o cameră';
+    } else if (nrCamere > 1) {
+      camereText = `${nrCamere} camere`;
+    } else if (input.camere === 0 || input.camere === '0') {
+      camereText = 'compartimentare deschisă (camere nenumărate)';
+    }
+
+    // Suprafață utilă
+    const suprafata = input.suprafata ? `${input.suprafata} m²` : '';
+
+    // Zonă
+    const zona = opts.zona || input.zona || '';
+    const zonaText = zona ? `în zona ${zona}` : '';
+
+    // Propoziția introductivă conform șablonului:
+    // "Imobil de tip ${tipul} cu o suprafață de .... în zona .... etc."
+    const segmenteIntro = [`Imobil de tip ${tip}`];
+    if (suprafata) segmenteIntro.push(`cu o suprafață utilă de ${suprafata}`);
+    if (camereText) segmenteIntro.push(`compus din ${camereText}`);
+    if (zonaText) segmenteIntro.push(`situat ${zonaText}`);
+
+    let text = segmenteIntro.join(', ') + '.';
+
+    // Nivel / Etaj (pentru blocuri) și regim de înălțime (pentru toate imobilele)
+    if (esteBloc) {
+      const regim = input.numarNiveluri
+        ? (input.numarNiveluri === 1 ? 'parter' : `P+${input.numarNiveluri - 1}`)
+        : '';
+      const regimText = regim ? ` într-un imobil cu regim de înălțime ${regim}` : '';
+
+      if (input.demisol) {
+        text += ` Locuința este amplasată la demisol${regimText}.`;
+      } else if (input.mansarda) {
+        text += ` Locuința este amplasată la mansardă${regimText}.`;
+      } else {
+        const nivelAfisat = (input.nivel === 'P' || input.nivel === 0 || input.nivel === '0')
+          ? 'parter (P)'
+          : `etajul ${input.nivel}`;
+        text += ` Proprietatea este poziționată la ${nivelAfisat}${regimText}.`;
+      }
+    } else if (input.numarNiveluri) {
+      const regim = input.numarNiveluri === 1 ? 'parter (P)' : `P+${input.numarNiveluri - 1}`;
+      text += ` Imobilul are un regim de înălțime ${regim}.`;
+    }
+
+    // Teren (pentru casă, palat, cort)
+    if (esteCuTeren && parseFloat(input.suprafataTeren) > 0) {
+      text += ` Proprietatea dispune de un teren aferent cu suprafața de ${input.suprafataTeren} m².`;
+    }
+
+    // Garaj (menționat anterior, afișat doar dacă include garaj)
+    const areGaraj = Boolean(input.garaj && input.garaj !== '0' && input.garaj !== 'false');
+    if (areGaraj) {
+      text += ' Include garaj.';
+    }
+
+    // An construcție & vechime
+    const anCurent = input.anCurent || opts.anCurent || new Date().getFullYear();
+    if (input.anConstructie) {
+      const vechime = anCurent - input.anConstructie;
+      const vechimeText = vechime > 0 ? ` (vechime ${vechime} ani)` : ' (construcție recentă)';
+      text += ` Clădirea a fost edificată în anul ${input.anConstructie}${vechimeText}.`;
+    }
+
+    // Stare / Condiții
+    const stareText = stariEtichete[input.stare] || 'stare decentă';
+    text += ` Se prezintă într-o ${stareText}.`;
+
+    return text.trim();
   }
 
   return {
@@ -193,5 +311,6 @@
     coefDemisolMansarda,
     corectieInaltime,
     evalueaza,
+    genereazaDescriere,
   };
 });
